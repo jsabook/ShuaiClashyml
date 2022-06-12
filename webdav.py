@@ -51,4 +51,4 @@ json_data['updateTime'] = now_str_time
 with open('newclash.yml','w+') as f:
     yaml.safe_dump(json_data,f,default_flow_style=False)
 
-# client.upload_file(from_path='newclash.yml', to_path='/clashbuild/newclash.yaml', overwrite=True)
+client.upload_file(from_path='newclash.yml', to_path='/clashbuild/newclash.yaml', overwrite=True)
