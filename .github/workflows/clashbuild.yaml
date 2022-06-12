@@ -19,6 +19,7 @@ jobs:
     - name: "开始执行"
       run: |
         python3 webdav.py
+        python3 transfer_v2ray.py
       env:
         WEBDAVURL: ${{ secrets.WEBDAVURL }}
         WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
