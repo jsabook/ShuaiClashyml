@@ -37,10 +37,18 @@ client = Client(base_url=WEBDAVURL,
 with open("clash.yml",'r+') as f:
     yml_data = f.read()
     json_data = yaml.load(yml_data,Loader=yaml.FullLoader)
+
+
+# convert type
+for index,proxy_group_item in enumerate(json_data['proxy-groups']):
+    if proxy_group_item['name'] in ['🇭🇰 香港','🇹🇼 台湾','🇸🇬 新加坡']:
+        json_data['proxy-groups'][index]['type'] = 'url-test'
+        json_data['proxy-groups'][index]['url'] = 'http://www.gstatic.com/generate_204'
+        json_data['proxy-groups'][index]['interval'] = 300
 json_data['proxy-groups'][0]['proxies'].insert(0,new_proxy_group['name'])
 json_data['proxy-groups'].insert(-1,new_proxy_group)
 json_data['updateTime'] = now_str_time
 with open('newclash.yml','w+') as f:
     yaml.safe_dump(json_data,f,default_flow_style=False)
 
-client.upload_file(from_path='newclash.yml', to_path='/clashbuild/newclash.yaml', overwrite=True)
+# client.upload_file(from_path='newclash.yml', to_path='/clashbuild/newclash.yaml', overwrite=True)
