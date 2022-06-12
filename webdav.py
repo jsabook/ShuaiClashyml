@@ -38,7 +38,7 @@ with open("clash.yml",'r+') as f:
     yml_data = f.read()
     json_data = yaml.load(yml_data,Loader=yaml.FullLoader)
 json_data['proxy-groups'][0]['proxies'].insert(0,new_proxy_group['name'])
-json_data['proxy-groups'].insert(0,new_proxy_group)
+json_data['proxy-groups'].insert(-1,new_proxy_group)
 json_data['updateTime'] = now_str_time
 with open('newclash.yml','w+') as f:
     yaml.safe_dump(json_data,f,default_flow_style=False)
