@@ -20,6 +20,7 @@ jobs:
       run: |
         python3 webdav.py
         python3 transfer_v2ray.py
+        python3 transfer_shadowrocket.py
       env:
         WEBDAVURL: ${{ secrets.WEBDAVURL }}
         WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
