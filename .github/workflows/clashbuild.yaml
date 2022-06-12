@@ -1,0 +1,31 @@
+name: buildclash
+on:
+  workflow_dispatch:
+   schedule:
+    - cron: "0 15 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Python 3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.7' 
+        architecture: 'x64'
+    - name: 安装依赖包
+      run: |
+        pip3 install -r requirements.txt
+    - name: "开始执行"
+      run: |
+        python3 webdav.py
+      env:
+        WEBDAVURL: ${{ secrets.WEBDAVURL }}
+        WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
+        WEBDAV_ACCESS: ${{ secrets.WEBDAV_ACCESS }}
+        CLASHURL: ${{ secrets.CLASHURL }}
+    - name: Delete Workflow Runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 1
