@@ -25,6 +25,7 @@ jobs:
         WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
         WEBDAV_ACCESS: ${{ secrets.WEBDAV_ACCESS }}
         CLASHURL: ${{ secrets.CLASHURL }}
+        V2RAYURL: ${{ secrets.V2RAYURL }}
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
       with:
